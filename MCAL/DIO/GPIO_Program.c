@@ -3,7 +3,9 @@
  * File Name: GPIO_Program.c
  *
  * Description: Contains main functions body and their implementation
- *
+ * 
+ * Layer : MCAL
+ * 
  * Author: Mohamed Youssef
  *
  * Date : 19/3/2024
@@ -16,7 +18,7 @@
 
 
 
-void GPIO_SetPinDirection(uint8 PORT_ID, uint8 PIN_ID, uint8 STATE )
+void M_GPIO_Void_SetPinDirection(uint8 PORT_ID, uint8 PIN_ID, uint8 STATE )
 {
         switch (STATE)
         {
@@ -56,7 +58,7 @@ void GPIO_SetPinDirection(uint8 PORT_ID, uint8 PIN_ID, uint8 STATE )
 }
 
 
-void GPIO_SetPinValue(uint8 PORT_ID, uint8 PIN_ID, uint8 STATE)
+void M_GPIO_Void_SetPinValue(uint8 PORT_ID, uint8 PIN_ID, uint8 STATE)
 {
     switch (STATE)
         {
@@ -95,7 +97,7 @@ void GPIO_SetPinValue(uint8 PORT_ID, uint8 PIN_ID, uint8 STATE)
         }
 }
 
-uint8 GPIO_ReadPin(uint8 PORT_ID, uint8 PIN_ID)
+uint8 M_GPIO_uint8_ReadPin(uint8 PORT_ID, uint8 PIN_ID)
 {
     switch (PORT_ID)
     {
@@ -112,7 +114,7 @@ uint8 GPIO_ReadPin(uint8 PORT_ID, uint8 PIN_ID)
 }
 
 
-void GPIO_TogglePin(uint8 PORT_ID, uint8 PIN_ID)
+void M_GPIO_Void_TogglePin(uint8 PORT_ID, uint8 PIN_ID)
 {
     switch (PORT_ID)
     {
@@ -129,7 +131,7 @@ void GPIO_TogglePin(uint8 PORT_ID, uint8 PIN_ID)
 }
 
 
-void GPIO_DisableAllPullUpResistors(void)
+void M_GPIO_Void_DisableAllPullUpResistors(void)
 {
     SET_BIT(SFIOR, PUD);
 }

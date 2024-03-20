@@ -4,6 +4,8 @@
  *
  * Description: Contains DIO configurations
  *
+ * Layer : MCAL
+ * 
  * Author: Mohamed Youssef
  *
  * Date : 19/3/2024
@@ -11,8 +13,8 @@
  *******************************************************************************/
 
 
-#ifndef GPIO_Config_h
-#define GPIO_Config_h
+#ifndef GPIO_CONFIG_H
+#define GPIO_CONFIG_H
 
 #define      PUD      2
 

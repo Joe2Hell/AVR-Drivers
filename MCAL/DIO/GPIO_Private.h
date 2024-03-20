@@ -3,7 +3,9 @@
  * File Name: GPIO_Private.h
  *
  * Description: conatins addresses of needed registers
- *
+ * 
+ * Layer : MCAL
+ * 
  * Author: Mohamed Youssef
  *
  * Date : 19/3/2024
@@ -11,8 +13,8 @@
  *******************************************************************************/
 
 
-#ifndef GPIO_Private_h
-#define GPIO_Private_h
+#ifndef GPIO_PRIVATE_H
+#define GPIO_PRIVATE_H
 
 #define SFIOR   (*(volatile uint8 *)(0x50))
 

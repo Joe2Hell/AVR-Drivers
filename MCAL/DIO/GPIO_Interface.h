@@ -2,8 +2,10 @@
  *
  * File Name: GPIO_Interface.h
  *
- * Description: CContains function prototypes and their brief explanation related to GIPO
- *
+ * Description: Contains function prototypes and their brief explanation related to GPIO
+ * 
+ * Layer : MCAL
+ * 
  * Author: Mohamed Youssef
  *
  * Date : 19/3/2024
@@ -12,8 +14,8 @@
 
 
 
-#ifndef GPIO_Interface_h
-#define GPIO_Interface_h
+#ifndef GPIO_INTERFACE_H
+#define GPIO_INTERFACE_H
 
 #include "../../SERVICE/StandardTypes.h"
 #include "../../SERVICE/BitMath.h"
@@ -30,7 +32,7 @@
 *   @synchronous / Asynchronous : Synchronous
 *   @ Reentrant / Non Reentrant : Reentrant
 */
-void GPIO_SetPinDirection(uint8 PORT_ID, uint8 PIN_ID, uint8 STATE );
+void M_GPIO_Void_SetPinDirection(uint8 PORT_ID, uint8 PIN_ID, uint8 STATE );
 
 
 
@@ -46,7 +48,7 @@ void GPIO_SetPinDirection(uint8 PORT_ID, uint8 PIN_ID, uint8 STATE );
 *   @synchronous / Asynchronous : Synchronous
 *   @ Reentrant / Non Reentrant : Reentrant
 */
-void GPIO_SetPinValue(uint8 PORT_ID, uint8 PIN_ID, uint8 STATE);
+void M_GPIO_Void_SetPinValue(uint8 PORT_ID, uint8 PIN_ID, uint8 STATE);
 
 
 
@@ -64,7 +66,7 @@ void GPIO_SetPinValue(uint8 PORT_ID, uint8 PIN_ID, uint8 STATE);
 *   @synchronous / Asynchronous : Synchronous
 *   @ Reentrant / Non Reentrant : Reentrant
 */
-uint8 GPIO_ReadPin(uint8 PORT_ID, uint8 PIN_ID);
+uint8 M_GPIO_uint8_ReadPin(uint8 PORT_ID, uint8 PIN_ID);
 
 
 
@@ -79,7 +81,7 @@ uint8 GPIO_ReadPin(uint8 PORT_ID, uint8 PIN_ID);
 *   @synchronous / Asynchronous : Synchronous
 *   @ Reentrant / Non Reentrant : Reentrant
 */
-void GPIO_TogglePin(uint8 PORT_ID, uint8 PIN_ID);
+void M_GPIO_Void_TogglePin(uint8 PORT_ID, uint8 PIN_ID);
 
 
 
@@ -93,7 +95,7 @@ void GPIO_TogglePin(uint8 PORT_ID, uint8 PIN_ID);
 *   @synchronous / Asynchronous : Synchronous
 *   @ Reentrant / Non Reentrant : Reentrant
 */
-void GPIO_DisableAllPullUpResistors(void);
+void M_GPIO_Void_DisableAllPullUpResistors(void);
 
 
 
