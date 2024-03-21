@@ -32,13 +32,15 @@
 
 
 /*Used to check if a specific bit is set, accepts Any register in REG, and the number of desired bit in BIT*/
-/*Return Non-zero value if set                 Returns 0 if not set*/
+/*Return Non-zero value if set
+  Returns 0 if not set         */
 #define IS_BIT_SET( REG , BIT )  ( ( REG ) & ( 1 << ( BIT ) ) )
 
 
 
 /*Used to check if a specific bit is clear, accepts Any register in REG, and the number of desired bit in BIT*/
-/*Return 1 if Clear                 Returns 0 If not clear*/
+/*Return 1 if Clear                 
+  Returns 0 If not clear        */
 #define IS_BIT_CLR( REG , BIT ) ( ! ( ( REG ) & ( 1 << ( BIT ) ) ) )
 
 
