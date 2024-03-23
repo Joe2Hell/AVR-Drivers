@@ -32,11 +32,11 @@ RisingEdgeTrigger
 #define FallingEdgeTrigger          2
 #define RisingEdgeTrigger           3
 
-#define INT0        6
-#define INT1        7
-#define INT2        5
+#define INT0_ID        6
+#define INT1_ID        7
+#define INT2_ID        5
 
-
+#define NULL_PTR  ( void* )0
 
 
 

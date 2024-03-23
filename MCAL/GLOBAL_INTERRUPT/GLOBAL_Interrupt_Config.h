@@ -15,7 +15,7 @@
 #define GLOBAL_INTERRUPT_CONFIG_H
 
 
-#define I       7
+#define I_ID       7
 
 
 

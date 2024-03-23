@@ -28,7 +28,7 @@
 *   @synchronous / Asynchronous : Synchronous
 *   @ Reentrant / Non Reentrant : Reentrant
 */
-void M_ExtInt_Void_GlobalInterruptEnable(void);
+void M_ExtInt_Void_GIE(void);
 
 
 
@@ -40,7 +40,7 @@ void M_ExtInt_Void_GlobalInterruptEnable(void);
 *   @synchronous / Asynchronous : Synchronous
 *   @ Reentrant / Non Reentrant : Reentrant
 */
-void M_ExtInt_Void_GlobalInterruptDisable(void);
+void M_ExtInt_Void_GID(void);
 
 
 

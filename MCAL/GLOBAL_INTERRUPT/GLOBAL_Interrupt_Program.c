@@ -18,12 +18,12 @@
 
 
 
-void M_ExtInt_Void_GlobalInterruptEnable(void)
+void M_ExtInt_Void_GIE(void)
 {
-    SET_BIT(SREG,I);
+    SET_BIT(SREG,I_ID);
 }
 
-void M_ExtInt_Void_GlobalInterruptDisable(void)
+void M_ExtInt_Void_GID(void)
 {
-    CLR_BIT(SREG,I);
+    CLR_BIT(SREG,I_ID);
 }
