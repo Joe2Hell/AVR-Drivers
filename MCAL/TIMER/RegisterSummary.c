@@ -1,0 +1,134 @@
+ /******************************************************************************
+ *
+ * File Name: RegisterSummary.h
+ *
+ * Description: Contains summary of needed registers
+ * 
+ * Author: Mohamed Youssef
+ *
+ * Date : 23/3/2024
+ *
+ *******************************************************************************/
+
+1- TCCR0 (Timer/Counter Control Register 0)
+
+    x- It controls the operation of Timer/Counter 0 and configures its mode of operation.
+    x- we are only concerned with all of them unfortunately
+    x- Bit 0, bit 1 and bit 2 are  clock select bits  
+       CS00   CS01      CS02
+    CS02    CS01    CS00                                                                         
+    0       0       0        No clock source (Timer/Counter stopped).                 
+    0       0       1        clkI/O (No prescaling)                                              
+    0       1       0        clkI/8 (From prescaling)
+    0       1       1        clkI/64 (From prescaling)
+    1       0       0        clkI/256 (From prescaling)             
+    1       0       1        clkI/1024 (From prescaling)
+    1       1       0        External clock source on T0 pin. Clock on falling edge.           
+    1       1       1        External clock source on T0 pin. Clock on rising edge.
+
+    x- Bit 3, and bit 6 are  Waveform generation mode
+       WGM01      WGM06   
+            WGM01   WGM00
+    MODE    CTC0    PWM0     Mode of operation      TOP         Update of OCR0      TOV0 Flag Set-on
+    0       0       0        Normal                 0xff        immediate           MAX  
+    1       0       1        PWM, Phase correct     0xff        TOP                 BOTTOM                  
+    2       1       0        CTC                    OCR0        immediate           MAX
+    3       1       1        Fast PWM               0xff        BOTTOM              MAX
+
+    x- Bit 4, and bit 5 are  Compare match output mode
+        COM00     COM01   
+    COM01   COM00                   (NON PWM MODE)
+    0       0       Normal port operation, OC0 disconnected.               
+    0       1       Toggle OC0 on compare match
+    1       0       Clear OC0 on compare match            
+    1       1       Set OC0 on compare match
+
+
+    COM01   COM00                   (FAST PWM MODE)
+    0       0       Normal port operation, OC0 disconnected.               
+    0       1       Reserved
+    1       0       Clear OC0 on compare match, set OC0 at BOTTOM, (non-inverting mode)           
+    1       1       Set OC0 on compare match, clear OC0 at BOTTOM, (inverting mode)
+
+    COM01   COM00                   (Phase correct PWM MODE)
+    0       0       Normal port operation, OC0 disconnected.               
+    0       1       Reserved
+    1       0       Clear OC0 on compare match when up-counting. Set OC0 on compare match when downcounting.          
+    1       1       Set OC0 on compare match when up-counting. Clear OC0 on compare match when downcounting
+
+
+
+    x- Bit 7 Force output compare is used to force an immediate compare match (generating an output compare event) when set.
+
+
+
+2- TCNT0 (Timer/Counter Register 0) 
+
+    x- Timer/Counter Register 0  stores the current value of the Timer/Counter 0.
+    x- Whenever Timer/Counter 0 is running, it increments its value continuously, based on the clock source and prescaler settings configured in TCCR0.
+    x- The range of TCNT0 is from 0 to 255 (for 8-bit mode), after which it overflows and restarts from 0.  (Total 256 ticks)
+    x- If set to 200, timer will start counting from 200 till reaching 255
+    
+
+3- OCR0 (Output compare  register)    
+
+    x- It is used primarily in PWM (Pulse Width Modulation) mode or in Compare Match mode to set the compare value against which the TCNT0 (Timer/Counter Register 0) is compared.
+    x- When TCNT0 matches the value stored in OCR0, specific actions can occur depending on the configuration of Timer/Counter 0.
+    x- In PWM mode, OCR0 determines the duty cycle of the PWM waveform generated on the OC0 pin.
+    x- In Compare Match mode, the match between TCNT0 and OCR0 can trigger actions like toggling, setting, or clearing the OC0 pin.
+    x- Writing a value to OCR0 sets the compare value, and the comparison occurs continuously as TCNT0 increments.
+
+
+4- TIMSK (Timer/Counter Interrupt Mask Register)   
+
+    x- TIMSK controls the generation of interrupts related to Timer/Counter operations.
+    x- It allows you to enable or disable specific interrupts associated with Timer/Counter modules
+    x- we are only concerned with Bit 0  and bit 1           
+                                  TOIE0      OCIE0   
+    x- TOIE0 (Timer/Counter0 Overflow Interrupt Enable): When this bit is set (1), it enables the interrupt triggered by the overflow of Timer/Counter 0 (when TCNT0 rolls over from 255 to 0).
+    x- OCIE0 (Output Compare Match Interrupt Enable): When this bit is set (1), it enables the interrupt triggered by a compare match between TCNT0 and OCR0.
+    x- Read and Write
+
+
+5- TIFR (Timer/Counter Interrupt Flag Register)   
+
+    x- TIFR stores flags indicating the status of various Timer/Counter-related interrupt conditions.
+    x- It is used in conjunction with TIMSK (Timer/Counter Interrupt Mask Register) to manage interrupts related to Timer/Counter operations.
+    x- we are only concerned with Bit 0  and bit 1           
+                                  TOV0       OCF0   
+    x- TOV0 (Timer/Counter0 Overflow Flag): This flag is set (1) when Timer/Counter 0 overflows, i.e., when TCNT0 rolls over from its maximum value to 0.
+    x- OCF0 (Output Compare Match Flag): This flag is set (1) when a compare match occurs between TCNT0 and OCR0.
+    x- Reading the TIFR register allows you to check the status of specific interrupt flags to determine if particular events have occurred.
+    x- Read and Write
+
+6- SFIOR (Special Function Input Output Register)   
+
+    x- a special-purpose register that contains control bits for various functions related to the operation of the microcontroller.
+    x- we are only concerned with Bit 0
+                                  PSR10
+    x- When this bit is written to one, the Timer/Counter1 and Timer/Counter0 prescaler will be reset.
+    x- Read and Write
+
+
+Normal mode calculation :
+
+Tick time = Prescaler / Frequency of system (Clock)
+
+Time for one overflow = Tick time x total ticks  = Tick time x 2^n     where n is the bit size of timer,  here it could be 8 bits or 10 bits  (256 or 1024 ticks)
+
+
+No. of overflows required = Required time / Time for one overflow
+
+say if it equals   4882.8215   
+                    //   \\
+                   //     \\
+                  OK       Problem, we dont like decimals at all
+                            To solve this issue, we insert it into this equation
+                            Preload = 2^n (1 - 0.y)   where y is the decimal  in our case its 0.8215
+                            it should return a whole integer with no decimals, if there is still a decimal , then there is nothing we can do about
+                            this will have to suffice
+            then we insert that preload into the TCNT0 at the start of each whole cycle 
+            and dont forget to place the counter in our ISR to equal 4882 + 1   so 4883, we round the digit upwards at all times
+
+
+
