@@ -18,13 +18,12 @@
 
 
 
-/*  
+/*  in your init funciton in application, choose one of the following triggers
 LowLevelTrigger                
 AnyLogicalChange               
 FallingEdgeTrigger  <----- Default
 RisingEdgeTrigger
 */
-#define TriggerType FallingEdgeTrigger      // Modify this if needed
 
 
 #define LowLevelTrigger             0
@@ -36,7 +35,7 @@ RisingEdgeTrigger
 #define INT1_ID        7
 #define INT2_ID        5
 
-#define NULL_PTR  ( void* )0
+
 
 
 

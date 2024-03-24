@@ -25,32 +25,32 @@
 
 /*
 *   @brief : this function is used to initailize External interrupt 0
-*   @args  : void
+*   @args  : chooses which type of trigger you want
 *   @return: no return
 *   @synchronous / Asynchronous : Synchronous
 *   @ Reentrant / Non Reentrant : Reentrant
 */
-void M_ExtInt_Void_Int0Init(void);
+void M_ExtInt_Void_Int0Init(uint8);
 
 
 /*
 *   @brief : this function is used to initailize External interrupt 1
-*   @args  : void
+*   @args  : chooses which type of trigger you want
 *   @return: no return
 *   @synchronous / Asynchronous : Synchronous
 *   @ Reentrant / Non Reentrant : Reentrant
 */
-void M_ExtInt_Void_Int1Init(void);
+void M_ExtInt_Void_Int1Init(uint8);
 
 
 /*
 *   @brief : this function is used to initailize External interrupt 2
-*   @args  : void
+*   @args  : chooses which type of trigger you want
 *   @return: no return
 *   @synchronous / Asynchronous : Synchronous
 *   @ Reentrant / Non Reentrant : Reentrant
 */
-void M_ExtInt_Void_Int2Init(void);
+void M_ExtInt_Void_Int2Init(uint8);
 
 
 
