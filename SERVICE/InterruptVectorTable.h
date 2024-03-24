@@ -13,6 +13,7 @@
 #ifndef INTERRUPT_VECTOR_TABLE_H
 #define INTERRUPT_VECTOR_TABLE_H
 
+#define NULL_PTR  ( void* )0
 
 /*       Source          Vector Number                      Interrupt Definition                                                                  Program Address     */
  #define RESET      			__vector_1                    //  External Pin, Power-on Reset, Brown-out Reset, Watchdog Reset, and JTAG AVR Reset       0x00

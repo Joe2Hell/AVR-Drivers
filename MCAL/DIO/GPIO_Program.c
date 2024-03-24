@@ -53,7 +53,7 @@ void M_GPIO_Void_SetPinDirection(uint8 PORT_ID, uint8 PIN_ID, uint8 STATE )
             default:
                 break;
             }
-            default:                break;
+          break;
         }
 }
 
@@ -93,24 +93,26 @@ void M_GPIO_Void_SetPinValue(uint8 PORT_ID, uint8 PIN_ID, uint8 STATE)
             default:
                 break;
             }
-        default:                break;
+             break;
         }
 }
 
 uint8 M_GPIO_uint8_ReadPin(uint8 PORT_ID, uint8 PIN_ID)
 {
+    uint8 Value = LOGIC_LOW;
     switch (PORT_ID)
     {
             case PORTA_REG:
-                IS_BIT_SET(PINA,PIN_ID);   break;
+            	Value = GET_BIT(PINA,PIN_ID);		 break;
             case PORTB_REG:
-                IS_BIT_SET(PINB,PIN_ID);   break;
+            	Value = GET_BIT(PINB,PIN_ID);		 break;
             case PORTC_REG:
-                IS_BIT_SET(PINC,PIN_ID);   break;
+            	Value = GET_BIT(PINC,PIN_ID);		 break;
             case PORTD_REG:
-                IS_BIT_SET(PIND,PIN_ID);   break;
+            	Value = GET_BIT(PIND,PIN_ID);		 break;
              default:                break;
-    }
+    } 
+    return Value;
 }
 
 
