@@ -15,14 +15,14 @@
 #define TIMER_CONFIG_H
 
 
-#define TimerMode  E_TimerMode_Normal          // modify this for timer mode select
+//#define TimerMode  E_TimerMode_Normal          // modify this for timer mode select
 /*  Timer mode             
 Normal     <----- Default           
 PWM Phase correct               
 CTC  
 FastPWM
 */
-#define Prescaler  E_Prescaler_Prescaler1      /// modify this for prescaler select
+//#define Prescaler  E_Prescaler_Prescaler1024      /// modify this for prescaler select
 /*  Prescaler mode             
 Off            
 1                   <----- Default    
@@ -33,7 +33,8 @@ Off
 External source falling edge
 External source rising edge
 */
-#define Preload  0      // modify this for preload value
+
+
 
 /*  Enable interrupt on normal             
 Enable normal       <----- Default  
@@ -42,15 +43,6 @@ Disable normal
 #define Int_Enable_Normal  E_Int_Enable_Normal      // modify this to enable/disable interrupt on normal mode
 #define Int_Enable_CTC  E_Int_Enable_CTC            // modify this to enable/disable interrupt on CTC mode
 
-enum Enable_Interrupt_Normal{
-    E_Int_Enable_Normal,
-    E_Int_Disable_Normal
-};
-
-enum Enable_Interrupt_CTC{
-    E_Int_Enable_CTC,
-    E_Int_Disable_CTC
-};
 
 
 enum Prescaler_value {
@@ -82,6 +74,7 @@ enum CompareMatchMode_Non_PWM_Mode{
 
 #define WGM01   3
 #define WGM00   6
+#define FOC0	7
 
 #define CS00    0
 #define CS01    1
@@ -90,6 +83,8 @@ enum CompareMatchMode_Non_PWM_Mode{
 #define TOIE0   0
 #define OCIE0   1
 
+#define COM00	4
+#define COM01	5
 
 
 

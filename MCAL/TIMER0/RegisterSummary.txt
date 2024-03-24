@@ -59,6 +59,7 @@
 
 
     x- Bit 7 Force output compare is used to force an immediate compare match (generating an output compare event) when set.
+    	FOC0 must be Zero when no PWM mode is select
 
 
 
